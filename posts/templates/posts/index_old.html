@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+<div style="text-align: right; margin-right: 8%; margin-top: 2%">
+    <span style="margin-right: 1%"> <a href=""> Login</a> </span>
+    <a href=""> Register</a>
+</div>
+<div style="margin-left: 5%; margin-top: 5%">
+    <h1> Posts </h1>
+    {% if post_list %}
+        <ul>
+        {% for post in post_list %}
+            <li style="font-size: 20px"><a href="{% url 'posts:post' post.id %}">{{ post.title }}</a> </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No posts are available.</p>
+    {% endif %}
+</div>
+
+<div style="margin-top: 10%; margin-left: 5%">
+    <h1>Add Post</h1>
+    <form action="{% url 'posts:add_post' %}" method="post">
+    {% csrf_token %}
+        <div>
+            <label for="name">Title:</label>
+            <input type="text" id="title" name="title" />
+        </div>
+        <div>
+            <label for="msg">Text:</label>
+            <textarea id="text" name="text"></textarea>
+        </div>
+
+        <div class="button">
+            <button type="submit">Send your message</button>
+        </div>
+    </form>
+</div>
+
+<div style="margin-top: 2%; margin-left: 5%">
+    <h1>Login</h1>
+    <form action="{% url 'posts:login' %}" method="post">
+        {% csrf_token %}
+        <div>
+            <label for="name">Username:</label>
+            <input type="text" name="username" />
+        </div>
+        <div>
+            <label for="msg">Password:</label>
+            <input type="password" name="password"></input>
+        </div>
+        <div class="button">
+            <button type="submit">Login</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

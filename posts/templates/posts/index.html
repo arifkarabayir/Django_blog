@@ -1,0 +1,43 @@
+{% extends 'posts/base.html' %}
+
+{% block main_content %}
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- Posts-  -->
+                {% if post_list %}
+                    {% for post in post_list %}
+                        <div class="post-preview">
+                            <a href="{% url 'posts:post' post.id %}">
+                                <h2 class="post-title">
+                                    {{ post.title }}
+                                </h2>
+                                <h3 class="post-subtitle">
+                                    {{ post.subtitle }}
+                                </h3>
+                            </a>
+                            <p class="post-meta">Posted by <a href="#">{{ post.author }}</a> on {{ post.pub_date }}</p>
+                        </div>
+                        <hr>
+                    {% endfor %}
+                {% else %}
+                    <p>There are no posts! What's happening?</p>
+                {% endif %}
+                <!-- Posts End -->
+
+                <!-- Pager -->
+
+                <!-- Will be added
+                <ul class="pager">
+                    <li class="next">
+                        <a href="#">Older Posts &rarr;</a>
+                    </li>
+                </ul>
+                Will be added end -->
+            </div>
+        </div>
+    </div>
+
+    <hr>
+{% endblock %}

@@ -35,8 +35,9 @@ def add_post(request):
             post.author = profile
             post.save()
             return HttpResponseRedirect(reverse('posts:index'))
+        return HttpResponse('WTF POST')
     else:
-        return HttpResponseRedirect('WTF')
+        return HttpResponseRedirect('WTF METHOD')
 
 
 def add_comment(request, post_id):
@@ -77,8 +78,9 @@ def update_post(request, post_id):
             post.text = form.cleaned_data['text']
             post.save()
             return HttpResponseRedirect(reverse('posts:post', kwargs={'post_id': post_id}))
+        return HttpResponse('WTF FORM')
     else:
-        return HttpResponse('Olmadı')
+        return HttpResponse('WTF METHOD')
 
 
 def delete_post(request, post_id):
@@ -96,7 +98,7 @@ def my_login(request):
         login(request, user)
         return HttpResponseRedirect(reverse('posts:index'))
     else:
-        return HttpResponse("Login olamadın.")
+        return HttpResponse("WTF LOGIN.")
 
 
 def about(request):
